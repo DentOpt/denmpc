@@ -1,0 +1,38 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b dentopt is ...
+\author Jan Dentler
+
+This package is providing an object oriented model predictive control (MPC) framework
+with the following features :
+- real-time control of nonlinear systems based on a "Condensed Multiple Shooting Generalized Minimal Residuum Method (CMSCGMRES)" developed by  <br /> 
+  1. Ohtsuka, T., “A Continuation/GMRES Method for Fast Computation of Nonlinear Receding Horizon Control,” Automatica, Vol. 40, No. 4, Apr. 2004, pp. 563-574.<br /> 
+  2. Seguchi, H., and Ohtsuka, T., “Nonlinear Receding Horizon Control of an Underactuated Hovercraft,” International Journal of Robust and Nonlinear Control, Vol. 13, Nos. 3-4, Mar.-Apr. 2003, pp. 381-398.
+- central control of multi-agent systems
+- object oriented code to easily adapt it
+- open-source code
+
+\section codeapi Code API
+
+Controller:<br /> 
+This base class containes the routines to implement and adjust controllers.
+
+Cmscgmres:<br /> 
+This class containes the routines of the CMSCGMRES solver.
+This solver is based on a newton-step with approximation of the Hessian via a forward difference approach
+
+Agent:<br /> 
+This base class containes the routines to implement and adjust agents.
+
+Constraint:<br /> 
+This base class containes the routines to implement and adjust constraints.
+
+Coupling:<br /> 
+This base class containes the routines to implement and adjust couplings.
+
+Scheduler:<br /> 
+This class containes the routines to handle the agent and controller communication.
+
+*/

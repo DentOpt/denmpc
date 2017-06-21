@@ -1,0 +1,24 @@
+This package is providing an object oriented real-time nonlinear model predictive control (NMPC) framework developed at the Automation & Robotics Research Group http://wwwde.uni.lu/snt/research/automation_robotics_research_group at the University of Luxembourg. 
+
+It is based on following contributions:
+
+ * J. Dentler, S. Kannan, M. A. O. Mendez and H. Voos, <<BR>>"A modularization approach for nonlinear model predictive control of distributed fast systems", <<BR>>24th Mediterranean Conference on Control and Automation (MED), Athens, Greece, 2016, pp. 292-297.<<BR>>doi: 10.1109/MED.2016.7535973
+ * Jan Dentler and Somasundar Kannan and Miguel Angel Olivares Mendez and Holger Voos, <<BR>>"A real-time model predictive position control with collision avoidance for commercial low-cost quadrotors", <<BR>>Proceedings  of 2016 IEEE Multi-Conference on Systems and Control (MSC 2016), Argentina, Buenos Aires, 2016
+
+The used kernel solver is a "Condensed Multiple Shooting Generalized Minimal Residuum Method (CMSCGMRES)" developed by Prof. Dr. Toshiyuki  OHTSUKA:
+
+ * Ohtsuka, T., <<BR>>“A Continuation/GMRES Method for Fast Computation of Nonlinear Receding Horizon Control,” <<BR>>Automatica, Vol. 40, No. 4, Apr. 2004, pp. 563-574.
+ * Seguchi, H., and Ohtsuka, T., <<BR>>“Nonlinear Receding Horizon Control of an Underactuated Hovercraft,” <<BR>>International Journal of Robust and Nonlinear Control, Vol. 13, Nos. 3-4, Mar.-Apr. 2003, pp. 381-398.
+
+Its features include:
+
+ 1. nonlinear model predictive control (e.g. a quadrotor with nonlinear system dynamics)
+ 1. Central control of single agent systems (e.g. a single robot)
+ 1. Central control of multi-agent systems (e.g. multiple robots that are interacting)
+ 1. Object oriented code to easily adapt it:
+  * Controller: Interface class for implementations of controllers, e.g.CMSCGMRES
+  * Agent: Interface class for implementations of agents, respective system or robot types, e.g. Quadrotor
+  * Constraint:  Interface class for implementations of single agent constraints
+  * Coupling:  Interface class for implementations for coupling agents
+ 1. Open-source code
+
