@@ -18,7 +18,7 @@ find_package(Boost REQUIRED COMPONENTS system)
 ################################################
 
 ## Generate messages in the 'msg' folder
-#add_message_files(  FILES  MsgFile.msg)	
+add_message_files(  FILES  VrepInfo.msg)	
 
 ## Generate added messages and services with any dependencies listed here
  generate_messages(

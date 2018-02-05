@@ -29,6 +29,10 @@
   <run_depend>roscpp</run_depend>
   <run_depend>rospy</run_depend>
   <run_depend>std_msgs</run_depend>
+
+  <!--   JUST NEEDED FOR TURTLESIM TUTORIAL -->
+  <build_depend>turtlesim</build_depend>
+  <run_depend>turtlesim</run_depend>
   
 
 <export>

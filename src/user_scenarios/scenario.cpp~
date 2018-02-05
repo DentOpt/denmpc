@@ -40,7 +40,7 @@ ros::init(argc, argv, "controller");
 	};
 	//Initial desired Pose
 	double turtle0_init_xdes[]={1,1,0};
-	turtle0->setInitialDesiredState(turtle0_init_xdes);
+	turtle0->setInitialState(turtle0_init_x);
 	turtle0->setInitialParameter(turtle0_init_p);
 	turtle0->setStateSubscriberRosTopicName       ("/turtle1/pose");
 	turtle0->setDesiredStateSubscriberRosTopicName("/turtle1/desiredpose");
