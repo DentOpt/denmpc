@@ -43,8 +43,8 @@ catkin_package(
 ###########
 
 ###################################################################
-include_directories(${catkin_INCLUDE_DIRS})
 include_directories(
+  ${catkin_INCLUDE_DIRS}
   src/
   src/user_generated
   src/user_scenarios
