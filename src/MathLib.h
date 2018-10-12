@@ -23,6 +23,7 @@
 #include <geometry_msgs/PoseStamped.h>
 #include <tf/tf.h>
 #include <tf/transform_broadcaster.h>
+#include <boost/format.hpp>
 
 namespace MathLib{
 
