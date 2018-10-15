@@ -60,9 +60,21 @@ ros::init(argc, argv, "controller");
 	ardrone0->setInitialState(ardrone0_init_x);
 	ardrone0->setInitialDesiredState(ardrone0_init_xdes);
 	ardrone0->setInitialParameter(ardrone0_init_p);
-	ardrone0->setStateSubscriberRosTopicName       ("/Ardrone2SimpleLinModel_HASHMARK_0/pose");
-	ardrone0->setDesiredStateSubscriberRosTopicName("/Ardrone2SimpleLinModel_HASHMARK_0/desiredpose");
-	ardrone0->setPublisherRosTopicName             ("/Ardrone2SimpleLinModel_HASHMARK_0/ext_ctrl_ch");
+
+
+	std::string s_ardrone_pose_topic, s_ardrone_desiredpose_topic, s_ardrone_ctrl_ch_topic ;
+	
+	ros::param::get("~ardrone_pose_topic", s_ardrone_pose_topic);
+	ros::param::get("~ardrone_desiredpose_topic", s_ardrone_desiredpose_topic);
+	ros::param::get("~ardrone_ctrl_ch_topic", s_ardrone_ctrl_ch_topic);
+
+	ROS_INFO("ardrone_pose_topic: %s", s_ardrone_pose_topic.c_str());
+	ROS_INFO("ardrone_desiredpose_topic: %s", s_ardrone_desiredpose_topic.c_str());
+	ROS_INFO("ardrone_ctrl_ch_topic: %s", s_ardrone_ctrl_ch_topic.c_str());
+
+	ardrone0->setStateSubscriberRosTopicName       (s_ardrone_pose_topic);
+	ardrone0->setDesiredStateSubscriberRosTopicName(s_ardrone_desiredpose_topic);
+	ardrone0->setPublisherRosTopicName             (s_ardrone_ctrl_ch_topic);
 	agentlist.push_back(ardrone0); /*add to agentlist*/
 
 	//AddConstraint

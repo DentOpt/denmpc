@@ -1,0 +1,20 @@
+<launch>
+    <!-- Launch arguments -->
+    <arg name="ardrone_front_yaml"      default="$(find optitrack_controller)/cam_info/ardrone_front.yaml" />
+    <group ns="ardrone/front/params">
+        <rosparam file="$(arg ardrone_front_yaml)" command="load"/>   
+    </group>
+
+    <arg name="ardrone_pose_topic"          default="/Ardrone2SimpleLinModel_HASHMARK_0/pose"/>
+    <arg name="ardrone_desiredpose_topic"   default="/Ardrone2SimpleLinModel_HASHMARK_0/desiredpose"/>
+    <arg name="ardrone_ctrl_ch_topic"       default="/Ardrone2SimpleLinModel_HASHMARK_0/ext_ctrl_ch"/>    
+
+    <!-- Start the mpc node   -->
+    <node pkg="denmpc" type="scenario_scenario_node" name="scenario_scenario_node" output="screen" >
+        <param name="ardrone_pose_topic"           value="$(arg ardrone_pose_topic)" />
+        <param name="ardrone_desiredpose_topic"    value="$(arg ardrone_desiredpose_topic)" />
+        <param name="ardrone_ctrl_ch_topic"        value="$(arg ardrone_ctrl_ch_topic)" />
+    </node>
+
+</launch>
+
