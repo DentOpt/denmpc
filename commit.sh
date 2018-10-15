@@ -8,7 +8,7 @@
 
   git add --all .
   git commit -m "$2"
-  git push "$1" master
+  git push "$1" denmpc_ardrone_gazebo
 
 
 # This will detach your HEAD, that is, leave you with no branch checked out:
