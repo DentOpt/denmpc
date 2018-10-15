@@ -10,7 +10,6 @@ New users start here:
 	cd ~/ros
 	catkin build denmpc
 
----
 This branch also depends upon a separate repo: (I haven't tested just denmpc and usma_ardrone on a standalone PC)
 
 	mkdir -p ~/ros/src/usma_ardrone && cd ~/ros/src/usma_ardrone
@@ -20,6 +19,7 @@ This branch also depends upon a separate repo: (I haven't tested just denmpc and
 	cd ~/ros
 	catkin build usma_ardrone
 
+---
 To run:
 =======
 
@@ -42,3 +42,9 @@ signal the ardrone to takeoff:
 
 	rostopic pub -1 /ardrone/takeoff std_msgs/Empty
 
+
+
+---
+Relevant source material:
+=======
+http://orbilu.uni.lu/bitstream/10993/28640/1/DENTLER_jan_MSC16_corrected.pdf
