@@ -104,7 +104,7 @@ void Scheduler::controlloop(){
 	printf("//**********************************************\n");
 
 }
-void Scheduler::vrepsimrunning(const dentopt_nmpc_controller::VrepInfo& msgInfo){
+void Scheduler::vrepsimrunning(const denmpc::VrepInfo& msgInfo){
 	//	printf("\n%u\n",msgInfo.simulatorState.data);
 	int info=msgInfo.simulatorState.data;
 	bool old_vrep_flag_stop =vrep_flag_stop_;

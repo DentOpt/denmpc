@@ -16,7 +16,7 @@
 
 #include <ros/ros.h>	//For ros::
 
-#include "dentopt_nmpc_controller/VrepInfo.h"
+#include "denmpc/VrepInfo.h"
 #include <boost/filesystem.hpp>
 #include "Event.h"
 #include "Controller.h"
@@ -53,7 +53,7 @@ protected:
 
 	/*VREP control loop scheduler (via ros)*/
 	void vrepcontrolloop();
-	void vrepsimrunning(const dentopt_nmpc_controller::VrepInfo& msgInfo);
+	void vrepsimrunning(const denmpc::VrepInfo& msgInfo);
 	float vrep_time_;
 	bool  vrep_flag_stop_;
 	bool  vrep_flag_pause_;
