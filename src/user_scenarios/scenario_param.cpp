@@ -47,25 +47,13 @@ ros::init(argc, argv, "controller");
 	 *    	ruvlat,ruvlat,ruvver,ruorient
 	 *  } dim[19]
 	*/
-	/*
-	double ardrone0_init_p[]={
-			-0.5092,1.458,3,3,1,1.3,
-			1.0,1.0,1.0, 1.0,1.0, 0.0,0.0,0.0,0.0,
-			1.0,1.0,1.0,1.0
-	};
-	*/
-	double ardrone0_init_p[]={ //without tracking position
-			-0.5092, 1.458, 
-			-1,1,	-5,
-			 1.3, 	 0.0,
-			 0.0,	 0.0, 	0.0,
-			 0.0, 	 0.0,	
-			 0.0,	 0.0, 	0.0,  
-			 1.0,	 1.0,	0.3, 1.0
-	};
 
-	double ardrone0_init_x[]=   {1.15,0,0.95, 1,0, 0.0,0.0, 0.0,0.0};
-	double ardrone0_init_xdes[]={1.15,0,0.95, 1,0, 0.0,0.0, 0.0,0.0};
+
+	std::vector<double> ardrone0_init_x, ardrone0_init_xdes, ardrone0_init_p;
+	ros::param::get("~ardrone0_init/x", ardrone0_init_x);
+	ros::param::get("~ardrone0_init/xdes", ardrone0_init_xdes);
+	ros::param::get("~ardrone0_init/p", ardrone0_init_p);
+
 	ardrone0->setInitialState(ardrone0_init_x);
 	ardrone0->setInitialDesiredState(ardrone0_init_xdes);
 	ardrone0->setInitialParameter(ardrone0_init_p);
@@ -90,22 +78,29 @@ ros::init(argc, argv, "controller");
 	Constraint* constraint= new OrientationConstraint_20170227(ardrone0);
 
 	//constraint_init_p{k0, ds, beta, ddist, kforw, kside, kup}
-	double constraint0_init_p[]={1,0.17,0.5,1.5,1,1,1};
+	std::vector<double> constraint0_init_p;
+	// double constraint0_init_p[]={1,0.17,0.5,1.5,1,1,1};
+	ros::param::get("~constraint0_init/p", constraint0_init_p);
 	constraint->setInitialParameter(constraint0_init_p);
 	constraint->setParameter(constraint0_init_p);
-
-
 
 /****** Initialize Coupling Instances ******/
 	std::vector<Controller*> controllerlist;
 
 	//Initialize: Controller
+	double HorizonDiskretization, HorizonLength, Tolerance, UpdateIntervall, MaximumNumberofIterations;
+	ros::param::get("~HorizonDiskretization", HorizonDiskretization);
+	ros::param::get("~HorizonLength", HorizonLength);
+	ros::param::get("~Tolerance", Tolerance);
+	ros::param::get("~UpdateIntervall", UpdateIntervall);
+	ros::param::get("~MaximumNumberofIterations", MaximumNumberofIterations);
+
 	Cmscgmres* controller1=new Cmscgmres(agentlist,controllerlist.size());
-	controller1->setHorizonDiskretization(10);
-	controller1->setHorizonLength(1);
-	controller1->setTolerance(1e-8);
-	controller1->setUpdateIntervall(0.01);
-	controller1->setMaximumNumberofIterations(10);
+	controller1->setHorizonDiskretization(HorizonDiskretization);
+	controller1->setHorizonLength(HorizonLength);
+	controller1->setTolerance(Tolerance);
+	controller1->setUpdateIntervall(UpdateIntervall);
+	controller1->setMaximumNumberofIterations(MaximumNumberofIterations);
 	controller1->activateInfo_ControllerStates();
 	//	controller1->activateInfo_ControllerTrace();
 	//	controller1->activateInfo_Controller();

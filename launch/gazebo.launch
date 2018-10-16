@@ -1,7 +1,31 @@
 <launch>
 
-    <!-- Start gazebo and ardrone node   -->
-    <include file="$(find usma_ardrone_gazebo)/launch/spawn_robots.launch"/>
+    <arg name="launcher"    default="gazebo_launch" />
+
+    <include file="$(find optitrack_controller)/launch/killNodes.launch">
+        <arg name="kill_topic"  default="/usma/shutdown"/>
+        <arg name="land_topic"  default="/ardrone/land"/>
+        <arg name="cmd_topic"   default="/usma_ardrone/uav/cmd_vel"/>
+    </include>
+
+    <node pkg="optitrack_controller"    type="listenForKill"        name="shutdownListener_$(arg launcher)" output="screen" required="true"/>
+
+    <arg name="use_sim_time"    default="true"/>
+    <arg name="gui"             default="true"/>
+    <arg name="verbose"         default="true"/>
+    <arg name="paused"          default="false"/>
+
+    <include file="$(find usma_ardrone_gazebo)/launch/empty_world.launch">
+        <arg name="world_name"      value="$(find usma_descriptions)/worlds/empty.world"/>
+        <arg name="gui"             value="$(arg gui)"/>
+        <arg name="paused"          value="$(arg paused)"/>
+        <arg name="verbose"         value="$(arg verbose)"/>
+        <arg name="use_sim_time"    value="$(arg use_sim_time)"/>
+    </include>
+
+    <!-- Spawn UAV --> 
+    <include file="$(find usma_descriptions)/UAV/launch/usma_ardrone_0.launch" />
+
 
     <!-- <node pkg="denmpc" type="simplePosePublisher.py" name="simplePosePub"/> -->
 
