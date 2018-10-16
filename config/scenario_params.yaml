@@ -1,7 +1,17 @@
 ardrone0_init:
   x: [1.15,0,0.95, 1,0, 0.0,0.0, 0.0,0.0]
   xdes: [1.15,0,0.95, 1,0, 0.0,0.0, 0.0,0.0]
-  p: [-0.5092, 1.458, -1,1, -5, 1.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.3, 1.0] #without tracking position
+  p: [-0.5092, 1.458, -1,1, -5, 1.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.3, 1.0] #without tracking position in cost function
+
+  # /* ARDrone parameters:
+  #  * {    lateralA,lateralB,
+  #  *      verticalA,verticalB,
+  #  *      orientationalA,orientationalB,
+  #  *      qposlat,qposlat, qposvert,qposorient, qposorient, qvlat,qvlat, qvvert,qvorient,
+  #  *      qposlat,qposvert,qposorient,qvlat,qvvert,qvorient,  (diag{qp*})
+  #  *      ruvlat,ruvlat,ruvver,ruorient (diag{ru*})
+  #  *  } dim[19]
+
 
 constraint0_init:
   p: [1,0.17,0.5,1.5,1,1,1]

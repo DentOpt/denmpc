@@ -33,7 +33,6 @@ ros::init(argc, argv, "controller");
 //	std::vector<Agent*> agentlist1;
 //	std::vector<Agent*> agentlist2;
 
-
 	//Initialize: Ardrone instance: ardrone1
 	Ardrone_20170227* ardrone0=new Ardrone_20170227(agentlist.size());
 
@@ -47,7 +46,6 @@ ros::init(argc, argv, "controller");
 	 *    	ruvlat,ruvlat,ruvver,ruorient
 	 *  } dim[19]
 	*/
-
 
 	std::vector<double> ardrone0_init_x, ardrone0_init_xdes, ardrone0_init_p;
 	ros::param::get("~ardrone0_init/x", ardrone0_init_x);
@@ -78,8 +76,8 @@ ros::init(argc, argv, "controller");
 	Constraint* constraint= new OrientationConstraint_20170227(ardrone0);
 
 	//constraint_init_p{k0, ds, beta, ddist, kforw, kside, kup}
-	std::vector<double> constraint0_init_p;
 	// double constraint0_init_p[]={1,0.17,0.5,1.5,1,1,1};
+	std::vector<double> constraint0_init_p;
 	ros::param::get("~constraint0_init/p", constraint0_init_p);
 	constraint->setInitialParameter(constraint0_init_p);
 	constraint->setParameter(constraint0_init_p);

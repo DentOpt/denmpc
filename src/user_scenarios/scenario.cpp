@@ -41,10 +41,9 @@ ros::init(argc, argv, "controller");
 	 * {  	lateralA,lateralB,
 	 *		verticalA,verticalB,
 	 *		orientationalA,orientationalB,
-	 *    	qposlat,qposlat,qposvert,
-	 *		qposorient,qposorient,
-	 *		qvlat,qvlat,qvvert,qvorient,
-	 *    	ruvlat,ruvlat,ruvver,ruorient
+	 *    	qposlat,qposlat, qposvert,qposorient, qposorient, qvlat,qvlat, qvvert,qvorient,
+	 *    	qposlat,qposvert,qposorient,qvlat,qvvert,qvorient,  (diag{qp*})
+	 *    	ruvlat,ruvlat,ruvver,ruorient (diag{ru*})
 	 *  } dim[19]
 	*/
 	/*
