@@ -25,22 +25,15 @@ To run:
 
 Launch gazebo first:
 
-	roslaunch usma_ardrone_gazebo spawn_robots.launch 
-
-
-Launch denmpc second:
-
-	roslaunch denmpc test.launch 
-
-
-send desired pose for ardrone:
-
-	rostopic pub -r 20 /usma_ardrone/mpc/desiredpose geometry_msgs/PoseStamped '{header: {seq: 1,stamp: {secs: 1, nsecs: 0},frame_id: ''},pose: {position: {x: 1.0, y: 0.0, z: 1.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}' 
-
+	roslaunch denmpc gazebo.launch 
 
 signal the ardrone to takeoff:
 
 	rostopic pub -1 /ardrone/takeoff std_msgs/Empty
+
+Launch denmpc second:
+
+	roslaunch denmpc test.launch 
 
 
 
