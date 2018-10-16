@@ -6,9 +6,7 @@
     <node pkg="denmpc" type="simplePosePublisher.py" name="simplePosePub"/>
 
 
-
-
-
+    
 </launch>
 
 

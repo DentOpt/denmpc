@@ -1,0 +1,10 @@
+<launch>
+    <node pkg="rostopic" type="rostopic" name="echoVRPN" output="screen" args="echo /vrpn_client_node/Ardrone/pose" />
+
+    <node pkg="rostopic" type="rostopic" name="liftoff" output="screen" args="pub -1 /ardrone/takeoff std_msgs/Empty" />
+
+
+    
+</launch>
+
+

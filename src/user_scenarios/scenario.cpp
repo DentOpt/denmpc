@@ -38,9 +38,13 @@ ros::init(argc, argv, "controller");
 	Ardrone_20170227* ardrone0=new Ardrone_20170227(agentlist.size());
 
 	/* Agent parameters:
-	 * {  lateralA,lateralB,verticalA,verticalB,orientationalA,orientationalB,
-	 *    qposlat,qposlat,qposvert,qposorient,qposorient,qvlat,qvlat,qvvert,qvorient,
-	 *    ruvlat,ruvlat,ruvver,ruorient
+	 * {  	lateralA,lateralB,
+	 *		verticalA,verticalB,
+	 *		orientationalA,orientationalB,
+	 *    	qposlat,qposlat,qposvert,
+	 *		qposorient,qposorient,
+	 *		qvlat,qvlat,qvvert,qvorient,
+	 *    	ruvlat,ruvlat,ruvver,ruorient
 	 *  } dim[19]
 	*/
 	/*
@@ -51,12 +55,19 @@ ros::init(argc, argv, "controller");
 	};
 	*/
 	double ardrone0_init_p[]={ //without tracking position
-			-0.5092,1.458,-1,1,-5,1.3,
-			0.0,0.0,0.0, 0.0,0.0, 0.0,0.0,0.0,0.0,
-			1.0,1.0,0.3,1.0
+			-0.5092, 1.458, 
+			-1,1,	-5,
+			 1.3, 	 0.0,
+			 0.0,	 0.0, 	0.0,
+			 0.0, 	 0.0,	
+			 0.0,	 0.0, 	0.0,  
+			 1.0,	 1.0,	0.3, 1.0
 	};
-	double ardrone0_init_x[]=   {0,0,2, 1,0, 0.0,0.0,0.0,0.0};
-	double ardrone0_init_xdes[]={0,0,2, 1,0, 0.0,0.0,0.0,0.0};
+
+
+
+	double ardrone0_init_x[]=   {1.15,0,0.95, 1,0, 0.0,0.0, 0.0,0.0};
+	double ardrone0_init_xdes[]={1.15,0,0.95, 1,0, 0.0,0.0, 0.0,0.0};
 	ardrone0->setInitialState(ardrone0_init_x);
 	ardrone0->setInitialDesiredState(ardrone0_init_xdes);
 	ardrone0->setInitialParameter(ardrone0_init_p);
