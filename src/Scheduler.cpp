@@ -146,6 +146,7 @@ void Scheduler::vrepcontrolloop(){
 
 
 	//Starting Agents
+	// ROS_INFO("Starting agents");
 	for(int it_controller=0;it_controller<controllerlist_.size();it_controller++){
 		ptr_controller=controllerlist_[it_controller];
 		ptr_controller->startAgents();

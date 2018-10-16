@@ -3,7 +3,7 @@
     <!-- Start gazebo and ardrone node   -->
     <include file="$(find usma_ardrone_gazebo)/launch/spawn_robots.launch"/>
 
-    <node pkg="denmpc" type="simplePosePublisher.py" name="simplePosePub"/>
+    <!-- <node pkg="denmpc" type="simplePosePublisher.py" name="simplePosePub"/> -->
 
 
     

@@ -254,7 +254,7 @@ public:
 	 */
 	void record(){};
 	void print(){};
-	virtual void start(){printf("Agent%i start: ynot defined",this->id_);};
+	virtual void start(){printf("Agent%i start: not defined",this->id_);};
 	virtual void pause(){printf("Agent%i pause: not defined",this->id_);};
 	virtual void stop() {printf("Agent%i stop:  not defined",this->id_);};
 	// calculate plant actuation from plant output with controller	-> Call Controller

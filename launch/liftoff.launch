@@ -3,7 +3,6 @@
 
     <node pkg="rostopic" type="rostopic" name="liftoff" output="screen" args="pub -1 /ardrone/takeoff std_msgs/Empty" />
 
-
     
 </launch>
 

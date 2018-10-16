@@ -54,6 +54,12 @@ void subStateCallback(const geometry_msgs::PoseStamped::ConstPtr& msg){
                double dz=(msg->pose.position.z-subscriber0_old_msg_.pose.position.z)/dt;
                double dyaw=(yaw-yaw_old)/dt;
 
+              // ROS_INFO("dt: %6.4f", dt);
+              // ROS_INFO("new  [x y z]: [%6.4f %6.4f %6.4f]", msg->pose.position.x, msg->pose.position.y, msg->pose.position.z);
+              // ROS_INFO("last [x y z]: [%6.4f %6.4f %6.4f]", subscriber1_old_msg_.pose.position.x, subscriber1_old_msg_.pose.position.y, subscriber1_old_msg_.pose.position.z);
+              // ROS_INFO("[newYaw lastYaw]: [%6.4f %6.4f]", yaw, yaw_old);
+
+
                tmp[0]=msg->pose.position.x;
                tmp[1]=msg->pose.position.y;
                tmp[2]=msg->pose.position.z;
@@ -86,10 +92,10 @@ void subStateCallback(const geometry_msgs::PoseStamped::ConstPtr& msg){
             double dz=(msg->pose.position.z-subscriber1_old_msg_.pose.position.z)/dt;
             double dyaw=(yaw-yaw_old)/dt;
 
-            ROS_INFO("dt: %6.4f", dt);
-            ROS_INFO("new  [x y z]: [%6.4f %6.4f %6.4f]", msg->pose.position.x, msg->pose.position.y, msg->pose.position.z);
-            ROS_INFO("last [x y z]: [%6.4f %6.4f %6.4f]", subscriber1_old_msg_.pose.position.x, subscriber1_old_msg_.pose.position.y, subscriber1_old_msg_.pose.position.z);
-            ROS_INFO("[newYaw lastYaw]: [%6.4f %6.4f]", yaw, yaw_old);
+            // ROS_INFO("dt: %6.4f", dt);
+            // ROS_INFO("new  [x y z]: [%6.4f %6.4f %6.4f]", msg->pose.position.x, msg->pose.position.y, msg->pose.position.z);
+            // ROS_INFO("last [x y z]: [%6.4f %6.4f %6.4f]", subscriber1_old_msg_.pose.position.x, subscriber1_old_msg_.pose.position.y, subscriber1_old_msg_.pose.position.z);
+            // ROS_INFO("[newYaw lastYaw]: [%6.4f %6.4f]", yaw, yaw_old);
 
             tmp[0] = msg->pose.position.x;
             tmp[1] = msg->pose.position.y;
