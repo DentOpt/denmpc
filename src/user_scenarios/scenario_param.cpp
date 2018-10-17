@@ -111,8 +111,8 @@ ros::init(argc, argv, "controller");
 
 /****** Initialize Scheduler ******/
 	Scheduler scheduler(argc,argv,controllerlist, eventlist);
-//	scheduler.run_control(0.01);
-	scheduler.run_vrep(0.01);
+	scheduler.run_control(0.01);
+	// scheduler.run_vrep(0.01);
 //	scheduler.run_simulation(0.1,10);
 
 };

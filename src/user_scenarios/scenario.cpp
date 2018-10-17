@@ -33,7 +33,6 @@ ros::init(argc, argv, "controller");
 //	std::vector<Agent*> agentlist1;
 //	std::vector<Agent*> agentlist2;
 
-
 	//Initialize: Ardrone instance: ardrone1
 	Ardrone_20170227* ardrone0=new Ardrone_20170227(agentlist.size());
 
@@ -79,9 +78,9 @@ ros::init(argc, argv, "controller");
 	ROS_INFO("ardrone_desiredpose_topic: %s", s_ardrone_desiredpose_topic.c_str());
 	ROS_INFO("ardrone_ctrl_ch_topic: %s", s_ardrone_ctrl_ch_topic.c_str());
 
-	ardrone0->setStateSubscriberRosTopicName       (s_ardrone_pose_topic);
-	ardrone0->setDesiredStateSubscriberRosTopicName(s_ardrone_desiredpose_topic);
-	ardrone0->setPublisherRosTopicName             (s_ardrone_ctrl_ch_topic);
+	ardrone0->setStateSubscriberRosTopicName       ("/vrpn_client_node/Ardrone/pose");
+	ardrone0->setDesiredStateSubscriberRosTopicName("/usma_ardrone/mpc/desiredpose");
+	ardrone0->setPublisherRosTopicName             ("/usma_ardrone/uav/cmd_vel");
 	agentlist.push_back(ardrone0); /*add to agentlist*/
 
 	//AddConstraint
@@ -92,8 +91,6 @@ ros::init(argc, argv, "controller");
 	double constraint0_init_p[]={1,0.17,0.5,1.5,1,1,1};
 	constraint->setInitialParameter(constraint0_init_p);
 	constraint->setParameter(constraint0_init_p);
-
-
 
 /****** Initialize Coupling Instances ******/
 	std::vector<Controller*> controllerlist;
@@ -117,8 +114,8 @@ ros::init(argc, argv, "controller");
 
 /****** Initialize Scheduler ******/
 	Scheduler scheduler(argc,argv,controllerlist, eventlist);
-//	scheduler.run_control(0.01);
-	scheduler.run_vrep(0.01);
+	scheduler.run_control(0.01);
+	// scheduler.run_vrep(0.01);
 //	scheduler.run_simulation(0.1,10);
 
 };
