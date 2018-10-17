@@ -516,6 +516,7 @@ void Controller::l	(double *out,double t,double *x, double *u, double *p, double
 	}
 }
 void Controller::dldx	(double *out,double t,double *x, double *u, double *p, double *xdes, double *udes){
+	printf("// -- -- -- -- void Controller::dldx\n");
 #ifdef DEBUG_FUNCTION_TRACE
 	std::cout<<"exec Controller::dldx()"<<std::endl;
 #endif
@@ -525,6 +526,7 @@ void Controller::dldx	(double *out,double t,double *x, double *u, double *p, dou
 //	for(int it_state=0; it_state<dim_x_conc_; it_state++){tmp_x[it_state]=0;out[it_state]=0;};
 
 	//Loop over agents
+	printf("// -- -- -- -- -- Loop over agents\n");
 	for(int it_agent=0;it_agent<agentlist_.size();it_agent++){
 		tmp_agent_ptr_=agentlist_[it_agent];
 		if(tmp_agent_ptr_->dim_x_>0){
@@ -543,10 +545,14 @@ void Controller::dldx	(double *out,double t,double *x, double *u, double *p, dou
 			}
 		}
 		//Loop over constraints in agents
+		printf("// -- -- -- -- -- Loop over constraints in agents\n");
 		for(int it_constraint=0;it_constraint<tmp_agent_ptr_->getConstraint_Dim();it_constraint++){
+			printf("// -- -- -- -- -- -- tmp_constraint_ptr_=tmp_agent_ptr_->constraint_[it_constraint];\n");
 			tmp_constraint_ptr_=tmp_agent_ptr_->constraint_[it_constraint];
+			printf("// -- -- -- -- -- -- if(tmp_constraint_ptr_->dim_l_>0&&tmp_constraint_ptr_->dim_x_>0)\n");
 			if(tmp_constraint_ptr_->dim_l_>0&&tmp_constraint_ptr_->dim_x_>0){
 				//Get function values
+				printf("// -- -- -- -- -- -- tmp_constraint_ptr_->dldx(\n");
 				tmp_constraint_ptr_->dldx(
 						tmp_x+tmp_constraint_ptr_->index_x_,
 						t,
@@ -557,12 +563,14 @@ void Controller::dldx	(double *out,double t,double *x, double *u, double *p, dou
 						xdes+tmp_constraint_ptr_->index_xdes_,
 						udes+tmp_constraint_ptr_->index_udes_);
 				//Save tmp to output and reset tmp
+				printf("// -- -- -- -- -- -- Save tmp to output and reset tmp\n");
 				for(int it_state=tmp_constraint_ptr_->index_x_; it_state<tmp_constraint_ptr_->index_x_+tmp_agent_ptr_->dim_x_; it_state++){
 					out[it_state]+=tmp_x[it_state];
 				}
 			}
 		}
 		//Loop over couplings in agents
+		printf("// -- -- -- -- -- Loop over couplings in agents\n");
 		for(int it_coupling=0;it_coupling<tmp_agent_ptr_->getCoupling_Dim();it_coupling++){
 			tmp_coupling_ptr_=tmp_agent_ptr_->coupling_[it_coupling];
 			//Check if agent is first coupling agent and stage cost existent

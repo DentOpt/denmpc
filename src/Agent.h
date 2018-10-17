@@ -254,9 +254,9 @@ public:
 	 */
 	void record(){};
 	void print(){};
-	virtual void start(){printf("Agent%i start: not defined",this->id_);};
-	virtual void pause(){printf("Agent%i pause: not defined",this->id_);};
-	virtual void stop() {printf("Agent%i stop:  not defined",this->id_);};
+	virtual void start(){printf("!!! Agent%i start: not defined \n",this->id_);};
+	virtual void pause(){printf("!!! Agent%i pause: not defined \n",this->id_);};
+	virtual void stop() {printf("!!! Agent%i stop:  not defined \n",this->id_);};
 	// calculate plant actuation from plant output with controller	-> Call Controller
 	void calculateActuation(double time){std::cout<<"Agent::calculateActuation"<<std::endl;};
 	// calculate plant output from measurement with Sensor	-> Call Sensor/Observer

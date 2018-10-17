@@ -107,6 +107,7 @@ protected:
 	 * @return void
 	 */
 	inline void lpfunc(double t, double* lambda, double* linp, double* lambdaprime){
+		printf("// -- -- Cmscgmres.h::inline void lpfunc \n");
 //		//linp=[x,optvar] //Primal Barrier => linp=[x,optvar]
 //		double* x=linp;
 //		double* optvar=linp +dim_x_conc_;

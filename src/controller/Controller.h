@@ -273,9 +273,10 @@ public:
 	 *	dlambda=-dHdx for optimality
 	 ***************************************************************************************/
 	inline void minusdHdx(double  *out,double t, double *x, double *optcon, double *d, double *p, double *xdes, double *udes, double* lambda){
-
+		printf("// -- -- Controller.h::inline void minusdHdx \n");
 		switch(constrainthandlingmethod_){
 		case METHOD_PRIMALBARRIER:{
+			printf("// -- -- -- case METHOD_PRIMALBARRIER\n");
 			double* tmp_ptr_u  =optcon;
 			double* tmp_ptr_mu =tmp_ptr_u +dim_u_conc_;
 			//		//linp=[x,optvar] //Primal Barrier => linp=[x,u,mu,mui]
@@ -287,6 +288,7 @@ public:
 			break;
 		}
 		case METHOD_AUXILIARYVARIABLE:{
+			printf("// -- -- -- case METHOD_AUXILIARYVARIABLE\n");
 			double* tmp_ptr_u    =optcon;
 			double* tmp_ptr_mu   =tmp_ptr_u   +dim_u_conc_;
 			double* tmp_ptr_mui  =tmp_ptr_mu  +dim_eqcon_conc_;
@@ -300,6 +302,7 @@ public:
 			break;
 		}
 		case METHOD_ACTIVESET:{
+			printf("// -- -- -- case METHOD_ACTIVESET\n");
 			double* tmp_ptr_u    =optcon;
 			double* tmp_ptr_mu   =tmp_ptr_u   +dim_u_conc_;
 			double* tmp_ptr_mui  =tmp_ptr_mu  +dim_eqcon_conc_;
@@ -313,6 +316,7 @@ public:
 			break;
 		}
 		case METHOD_EXTERIORPENALTY:{
+			printf("// -- -- -- case METHOD_EXTERIORPENALTY\n");
 			double* tmp_ptr_u    =optcon;
 			double* tmp_ptr_mu   =tmp_ptr_u   +dim_u_conc_;
 			double* tmp_ptr_mui  =tmp_ptr_mu  +dim_eqcon_conc_;
@@ -364,11 +368,14 @@ public:
 		}
 	};
 	inline void minusdHdxPrimalBarrier(double  *out,double t, double *x, double *u, double *d, double *p, double *xdes, double *udes, double* lambda, double* mu){
+		printf("// -- -- -- inline void minusdHdxPrimalBarrier\n");
 		double tmp_x[dim_x_conc_];
 		memset(tmp_x, 0, dim_x_conc_*sizeof (double));
 		//		for(int it_control=0; it_control<dim_x_conc_; it_control++){tmp_x[it_control]=0;}
 
+		printf("// -- -- -- -- dldx		(out,t,x,u,p,xdes,udes);\n");
 		dldx		(out,t,x,u,p,xdes,udes);
+		printf("// -- -- -- -- dfdxlambda	(tmp_x,t,x,u,d,p,lambda);\n");
 		dfdxlambda	(tmp_x,t,x,u,d,p,lambda);
 		for(int it_state=0; it_state<dim_x_conc_; it_state++){out[it_state]+=tmp_x[it_state];}
 		if(dim_eqcon_conc_){
@@ -387,6 +394,7 @@ public:
 			for(int it_state=0; it_state<dim_x_conc_; it_state++){out[it_state]+=tmp_x[it_state];}
 		}
 		//Negate dHdx
+		printf("// -- -- -- -- for(int it_state=0; it_state<dim_x_conc_; it_state++){out[it_state]=-out[it_state];}\n");
 		for(int it_state=0; it_state<dim_x_conc_; it_state++){out[it_state]=-out[it_state];}
 	};
 	/***************************************************************************************

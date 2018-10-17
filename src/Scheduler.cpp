@@ -48,19 +48,16 @@ void Scheduler::controlloop(){
 	//Index
 	unsigned i;
 	//Printing loop start screen
-	printf("//---------------------------------------------\n");
 	printf("// Start ROS Control Loop \n");
+	printf("//---------------------------------------------\n");
 
-
-	//Starting Agents
+	printf("//Starting Agents \n");
 	for(int it_controller=0;it_controller<controllerlist_.size();it_controller++){
 		ptr_controller=controllerlist_[it_controller];
 		ptr_controller->startAgents();
 	}
 
-
-	//Starting fccf loop
-	//--------------------------------------------------------------
+	printf("//Starting fccf loop \n");
 	for(counter_fccfloop_=0;ros::ok();counter_fccfloop_++){
 		//Calculate system time in framework
 		time_framework_=ros::Time::now().toSec()-ros_time_calibration_;
@@ -72,21 +69,23 @@ void Scheduler::controlloop(){
 		std::cout<<"                                        *\\"<<std::endl;
 		std::cout<<"/*************************************************************************\\"<<std::endl;
 
-		//Check if event happend
+		// printf("//Check if event happened \n");
 		bool flag_event_happened=false;
 		for(int it_event=0;it_event<eventlist_.size();it_event++){
 			if(eventlist_[it_event]->check(time_framework_)){
 				flag_event_happened=true;
 			}
 		}
-		//Reinit if event happened
+		
+		// printf("//Reinit if event happened \n");
 		if(flag_event_happened){
 			flag_event_happened=false;
 			for(int it_controller=0;it_controller<controllerlist_.size();it_controller++){
 				controllerlist_[it_controller]->init();
 			}
 		}
-		//Control loop
+		
+		printf("//Control loop \n");
 		for(int it_controller=0;it_controller<controllerlist_.size();it_controller++){
 			ptr_controller=controllerlist_[it_controller];
 			ptr_controller->getMeasurements();
@@ -94,9 +93,10 @@ void Scheduler::controlloop(){
 			ptr_controller->applyAction();
 		}
 
-		//Sleep until endtime of loop intervall
+		printf("//Sleep until endtime of loop interval \n");
 		loop_frequency.sleep();
-		//Run ROS Processes
+		
+		printf("//Run ROS Processes\n");
 		ros::spinOnce();
 	}
 	printf("//**********************************************\n");
