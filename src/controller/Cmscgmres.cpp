@@ -196,7 +196,7 @@ void Cmscgmres::freeMemory(){
 
 //void Cmscgmres::calcControlUpdate(double globaltime,double* presentpose,double* desiredpose)
 void Cmscgmres::computeAction(double t) {
-	printf("// Cmscgmres::computeAction \n");
+	// printf("// Cmscgmres::computeAction \n");
 	int i;
 	ts_ = t + ht_;
 	//Get Time
@@ -222,14 +222,14 @@ void Cmscgmres::computeAction(double t) {
 	}
 
 	//Excert Control Calculations
-	printf("// -- Excert Control Calculations \n");
+	// printf("// -- Excert Control Calculations \n");
 	unew(t,x_conc_,x1_,optvar_conc_);
 
 	if(flag_show_controllerinfo_){
 		log_stringstream_<<"Horizon thor:"<<thor_<<std::endl;
 		log_stringstream_<<"Cmscgmres loop calc time: "<<ros::Time::now().toSec() - clock<<" sec\n"<<std::endl;
 	}
-	printf("// -- Publish Computation time \n");
+	// printf("// -- Publish Computation time \n");
 	//Publish Computation time
 	std_msgs::Float32 comptime;
 	comptime.data=(ros::Time::now().toSec() - clock);
@@ -318,7 +318,7 @@ void Cmscgmres::adufunc(unsigned n, double *du, double *adu) {
 
 void Cmscgmres::unew(double t, double x[], double x1[], double u[])
 {
-	printf("// Cmscgmres::unew \n");
+	// printf("// Cmscgmres::unew \n");
 	int i;
 	double x2[dim_x_conc_];
 
@@ -333,9 +333,9 @@ void Cmscgmres::unew(double t, double x[], double x1[], double u[])
 
 	//F[0]			=Hu(xk,		Xk[1],	Uk[0])	=Hu(xk,Lk[0],Uk[0])
 	//F[1::nhor_-1]	=Hu(Xk[2i],	Xk[2i+3],Uk[i+1]) =HU(Xk[i],Lk[i+1],Uk[i]) //i=1...nhor_-2
-	printf("// -- Ffunc(U_, X_, x, t, F_); \n");
+	// printf("// -- Ffunc(U_, X_, x, t, F_); \n");
 	Ffunc(U_, X_, x, t, F_);   //ok
-	printf("// -- Gfunc(U_, X_, x, t, G_); \n");
+	// printf("// -- Gfunc(U_, X_, x, t, G_); \n");
 	Gfunc(U_, X_, x, t, G_);	//ok
 	Ffunc(U_, X_, x1s_, ts_, F1s_);
 	Gfunc(U_, X_, x1s_, ts_, G1s_);
@@ -677,7 +677,7 @@ void Cmscgmres::Ffunc(double **Uk, double **Xk, double *xk, double tk, double **
 void Cmscgmres::Gfunc(double **Uk, double **Xk, double *xk, double tk, double **Gk)
 {
 
-	printf("// -- Cmscgmres::Gfunc \n");
+	// printf("// -- Cmscgmres::Gfunc \n");
 
 	int i;
 	double tauf, taut, linp[dim_x_conc_+dim_optvar_conc_];
@@ -703,7 +703,7 @@ void Cmscgmres::Gfunc(double **Uk, double **Xk, double *xk, double tk, double **
 
 	//Gx[2i+2]=(Xk[2i+2]-Xk[2i])-h*f(Xk[2i],Uk[i+1])
 	//Gl[2i+1]=(Xk[2i+1]-Xk[2i+3])+h*(-dHdx)(Xk[2i+3],(Xk[2i],Uk[i+1]))
-	printf("// -- -- for(taut = tk+htau_, i=0;i<nhor_-1;i++) \n");
+	// printf("// -- -- for(taut = tk+htau_, i=0;i<nhor_-1;i++) \n");
 	for(taut = tk+htau_, i=0;i<nhor_-1;i++){
 		msub(1,dim_x_conc_, Xk[2*i+2], Xk[2*i], xerr);	//xerr=Xk[2i+2]-Xk[2i]
 		msub(1,dim_x_conc_, Xk[2*i+1], Xk[2*i+3], lerr);//lerr=Xk[2i+1]-Xk[2i+3]//Lambdaerror
@@ -711,7 +711,7 @@ void Cmscgmres::Gfunc(double **Uk, double **Xk, double *xk, double tk, double **
 		xpfunc(taut, Xk[2*i], Uk[i+1], gxr);		//gxr=f(Xk[2i],Uk[i+1])
 		mmov(1,dim_x_conc_, Xk[2*i],linp);
 		mmov(1,dim_optvar_conc_, Uk[i+1], linp+dim_x_conc_);
-		printf("// -- -- lpfunc(taut, Xk[2*i+3], linp, glr); \n");
+		// printf("// -- -- lpfunc(taut, Xk[2*i+3], linp, glr); \n");
 		lpfunc(taut, Xk[2*i+3], linp, glr);		//glr=(-dHdx)(Xk[2i+3],(Xk[2i],Uk[i+1]))=(-dHdx)(lmd[k],x[k],Uk[k+1]))
 		mmulsc(1,dim_x_conc_, gxr, htau_, gxr);				//gxr=h*f(Xk[2i],Uk[i+1])
 		mmulsc(1,dim_x_conc_, glr, htau_, glr);				//glr=h*(-dHdx)(Xk[2i+3],(Xk[2i],Uk[i+1]))

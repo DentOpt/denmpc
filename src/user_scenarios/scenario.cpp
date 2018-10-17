@@ -35,32 +35,49 @@ ros::init(argc, argv, "controller");
 
 	//Initialize: Ardrone instance: ardrone1
 	Ardrone_20170227* ardrone0=new Ardrone_20170227(agentlist.size());
-
+	
 	/* Agent parameters:
-	 * {  	lateralA,lateralB,
-	 *		verticalA,verticalB,
-	 *		orientationalA,orientationalB,
-	 *    	qposlat,qposlat, qposvert,qposorient, qposorient, qvlat,qvlat, qvvert,qvorient,
-	 *    	qposlat,qposvert,qposorient,qvlat,qvvert,qvorient,  (diag{qp*})
-	 *    	ruvlat,ruvlat,ruvver,ruorient (diag{ru*})
+	 * {  lateralA,	lateralB,	verticalA,	verticalB,	orientationalA,	orientationalB,
+	 *    qposlat,	qposlat,	qposvert,	qposorient,	qposorient,		qvlat,	qvlat,	qvvert,	qvorient,
+	 *    ruvlat,	ruvlat,		ruvver,		ruorient
 	 *  } dim[19]
 	*/
-	/*
-	double ardrone0_init_p[]={
-			-0.5092,1.458,3,3,1,1.3,
-			1.0,1.0,1.0, 1.0,1.0, 0.0,0.0,0.0,0.0,
-			1.0,1.0,1.0,1.0
-	};
+
+	/* Agent parameters:
+	 * {  	lateralA,		lateralB,
+	 *		verticalA,		verticalB,
+	 *		orientationalA,	orientationalB,
+	 *    	qposlat,		qposlat, 		qposvert,	qposorient, 	qposorient, 
+	 *		qvlat,			qvlat, 			qvvert,		qvorient,
+	 *    	qposlat,		qposvert,		qposorient,	
+	 *  } dim[19]
 	*/
+
+	 // *		qvlat,			qvvert,			qvorient,  (diag{qp*})
+	 // *    	ruvlat,			ruvlat,			ruvver,		ruorient (diag{ru*})
+
+	
+	// double ardrone0_init_p[]={
+	// 		-0.5092,1.458, 	3.0,	3.0,	1.0,	1.3,
+	// 		 1.0,	1.0,	1.0, 	1.0,	1.0, 	0.0, 0.0, 0.0, 0.0,
+	// 		 1.0,	1.0,	1.0,	1.0
+	// };
+
 	double ardrone0_init_p[]={ //without tracking position
-			-0.5092, 1.458, 
-			-1,1,	-5,
-			 1.3, 	 0.0,
-			 0.0,	 0.0, 	0.0,
-			 0.0, 	 0.0,	
-			 0.0,	 0.0, 	0.0,  
-			 1.0,	 1.0,	0.3, 1.0
+			-0.5092,1.458, -1,	 	1,	   -5,   	1.3,
+			 0.0,	0.0,	0.0, 	0.0, 	0.0, 	0.0, 0.0, 0.0, 0.0,
+			 1.0,	1.0,	0.3, 	1.0
 	};
+	
+	// double ardrone0_init_p[]={ //without tracking position
+	// 		-0.5092, 1.458, 
+	// 		-1,1,	-5,
+	// 		 1.3, 	 0.0,
+	// 		 0.0,	 0.0, 	0.0,
+	// 		 0.0, 	 0.0,	
+	// 		 0.0,	 0.0, 	0.0,  
+	// 		 1.0,	 1.0,	0.3, 1.0
+	// };
 
 	double ardrone0_init_x[]=   {1.15,0,0.95, 1,0, 0.0,0.0, 0.0,0.0};
 	double ardrone0_init_xdes[]={1.15,0,0.95, 1,0, 0.0,0.0, 0.0,0.0};
