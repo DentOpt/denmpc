@@ -51,13 +51,13 @@ void Scheduler::controlloop(){
 	printf("// Start ROS Control Loop \n");
 	printf("//---------------------------------------------\n");
 
-	printf("//Starting Agents \n");
+	// printf("//Starting Agents \n");
 	for(int it_controller=0;it_controller<controllerlist_.size();it_controller++){
 		ptr_controller=controllerlist_[it_controller];
 		ptr_controller->startAgents();
 	}
 
-	printf("//Starting fccf loop \n");
+	// printf("//Starting fccf loop \n");
 	for(counter_fccfloop_=0;ros::ok();counter_fccfloop_++){
 		//Calculate system time in framework
 		time_framework_=ros::Time::now().toSec()-ros_time_calibration_;
@@ -85,7 +85,7 @@ void Scheduler::controlloop(){
 			}
 		}
 		
-		printf("//Control loop \n");
+		// printf("//Control loop \n");
 		for(int it_controller=0;it_controller<controllerlist_.size();it_controller++){
 			ptr_controller=controllerlist_[it_controller];
 			ptr_controller->getMeasurements();
@@ -93,10 +93,10 @@ void Scheduler::controlloop(){
 			ptr_controller->applyAction();
 		}
 
-		printf("//Sleep until endtime of loop interval \n");
+		// printf("//Sleep until endtime of loop interval \n");
 		loop_frequency.sleep();
 		
-		printf("//Run ROS Processes\n");
+		// printf("//Run ROS Processes\n");
 		ros::spinOnce();
 	}
 	printf("//**********************************************\n");

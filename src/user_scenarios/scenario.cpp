@@ -81,6 +81,8 @@ ros::init(argc, argv, "controller");
 	controller1->setTolerance(1e-8);
 	controller1->setUpdateIntervall(0.01);
 	controller1->setMaximumNumberofIterations(10);
+	controller1->activateInfo_ControllerTrace();
+	controller1->activateInfo_Controller();
 	controller1->activateInfo_ControllerStates();
 	controllerlist.push_back(controller1);
 
