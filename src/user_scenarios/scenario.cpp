@@ -57,9 +57,12 @@ ros::init(argc, argv, "controller");
 	ROS_INFO("ardrone_desiredpose_topic: %s", s_ardrone_desiredpose_topic.c_str());
 	ROS_INFO("ardrone_ctrl_ch_topic: %s", s_ardrone_ctrl_ch_topic.c_str());
 
-	ardrone0->setStateSubscriberRosTopicName       ("/vrpn_client_node/Ardrone/pose");
-	ardrone0->setDesiredStateSubscriberRosTopicName("/usma_ardrone/mpc/desiredpose");
-	ardrone0->setPublisherRosTopicName             ("/usma_ardrone/uav/cmd_vel");
+	ardrone0->setStateSubscriberRosTopicName       (s_ardrone_pose_topic.c_str());
+	ardrone0->setDesiredStateSubscriberRosTopicName(s_ardrone_desiredpose_topic.c_str());
+	ardrone0->setPublisherRosTopicName             (s_ardrone_ctrl_ch_topic.c_str());
+	// ardrone0->setStateSubscriberRosTopicName       ("/vrpn_client_node/Ardrone/pose");
+	// ardrone0->setDesiredStateSubscriberRosTopicName("/usma_ardrone/mpc/desiredpose");
+	// ardrone0->setPublisherRosTopicName             ("/usma_ardrone/mpc/cmd_vel");
 	agentlist.push_back(ardrone0); /*add to agentlist*/
 
 	//AddConstraint
