@@ -337,7 +337,7 @@ public:
 	 * @return void
 	 */
 	Cmscgmres(std::vector<Agent*> _listofagents,int _id,
-			int _kmax=6,double _thor=1, double _ht=0.1,
+			int _kmax=10,double _thor=1, double _ht=0.1,
 			int _nhor=10,double _rtol= 1e-8,double _zeta=10,
 			double _alpha=2,double _hdir=0.001);
 

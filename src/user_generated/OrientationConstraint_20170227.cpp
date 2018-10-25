@@ -38,7 +38,7 @@ OrientationConstraint_20170227::OrientationConstraint_20170227(Agent* agent,int 
  * Stage costs                                          * 
  ********************************************************/ 
 void OrientationConstraint_20170227::l(double *out, double t, double *x, double *u, double *p, double *pc,  double *xdes, double *udes){
-    double o[10];
+    double o[12];
     o[0] = -x[0];
     o[1] = -x[2];
     o[2] = xdes[2] + o[1];
@@ -55,7 +55,7 @@ void OrientationConstraint_20170227::l(double *out, double t, double *x, double 
 pow(o[2]*o[3] - o[10]*o[11],2.));
 }
 void OrientationConstraint_20170227::dldx(double *out, double t, double *x, double *u, double *p, double *pc,  double *xdes, double *udes){
-    double o[24];
+    double o[28];
     o[0] = -x[0];
     o[1] = xdes[0] + o[0];
     o[2] = x[4]*o[1];

@@ -45,6 +45,25 @@ Ardrone_20170227::Ardrone_20170227(int id):Agent(id){
     d_init_    =defvector(dim_d_);
     p_init_    =defvector(dim_p_);
 
+
+    //Initialize Parameters
+	/* Agent parameters:
+	 * {  lateralA,lateralB,verticalA,verticalB,orientationalA,orientationalB,
+	 *    qposlat,qposlat,qposvert,qposorient,qposorient,qvlat,qvlat,qvvert,qvorient,
+	 *    ruvlat,ruvlat,ruvver,ruorient
+	 *  } dim[19]
+	*/
+	double ardrone0_init_p[]={
+			-0.5092,1.458,3,3,1,1.3, //Model Parameters: Ardrone
+			1.0,1.0,1.0, 1.0,1.0, 0.0,0.0,0.0,0.0, //State Penalty: Position
+			1.0,1.0,1.0,1.0  //Input Penalty
+	};
+	double ardrone0_init_x[]=   {0,0,0, 1,0, 0.0,0.0,0.0,0.0};
+	double ardrone0_init_xdes[]={0,0,0, 1,0, 0.0,0.0,0.0,0.0};
+	this->setInitialState(ardrone0_init_x);
+	this->setInitialDesiredState(ardrone0_init_xdes);
+	this->setInitialParameter(ardrone0_init_p);
+
     //Creating control publisher
     ros::Publisher* pub0= new ros::Publisher();
     //Starting Advertising
@@ -54,16 +73,34 @@ Ardrone_20170227::Ardrone_20170227(int id):Agent(id){
     
     //Creating subscriber
     ros::Subscriber* sub0= new ros::Subscriber();
+    //Initialize subscriber0_old_msg_ attribute
+    subscriber0_old_msg_.pose.position.x=0;
+    subscriber0_old_msg_.pose.position.y=0;
+    subscriber0_old_msg_.pose.position.z=0;
+    subscriber0_old_msg_.pose.orientation.w=1;
+    subscriber0_old_msg_.pose.orientation.x=0;
+    subscriber0_old_msg_.pose.orientation.y=0;
+    subscriber0_old_msg_.pose.orientation.z=0;
     //Starting subscription
     *sub0=ros_node_.subscribe("pose", 1, &Ardrone_20170227::subStateCallback,this);
     //Adding subscriber to array
     ros_state_subscribers_.push_back(sub0);
+
     //Creating subscriber
     ros::Subscriber* sub1= new ros::Subscriber();
+    //Initialize subscriber0_old_msg_ attribute
+    subscriber1_old_msg_.pose.position.x=0;
+    subscriber1_old_msg_.pose.position.y=0;
+    subscriber1_old_msg_.pose.position.z=0;
+    subscriber1_old_msg_.pose.orientation.w=1;
+    subscriber1_old_msg_.pose.orientation.x=0;
+    subscriber1_old_msg_.pose.orientation.y=0;
+    subscriber1_old_msg_.pose.orientation.z=0;
     //Starting subscription
     *sub1=ros_node_.subscribe("desiredpose", 1, &Ardrone_20170227::subDesiredStateCallback,this);
     //Adding subscriber to array
     ros_desired_state_subscribers_.push_back(sub1);
+
 }
 Ardrone_20170227::Ardrone_20170227(
     std::string state_subscriber_topic,

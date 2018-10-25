@@ -21,6 +21,10 @@ class Ardrone_20170227:public Agent{
     geometry_msgs::PoseStamped subscriber0_old_msg_;
     geometry_msgs::PoseStamped subscriber1_old_msg_;
 
+	void start(){printf("Agent%i: Ardrone_20170227 started",this->id_);};
+	void pause(){printf("Agent%i: Ardrone_20170227 paused",this->id_);};
+	void stop() {printf("Agent%i: Ardrone_20170227 stopped",this->id_);};
+
 public:
     Ardrone_20170227(int id=0);
     Ardrone_20170227(

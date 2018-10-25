@@ -46,10 +46,10 @@ Cmscgmres::Cmscgmres(std::vector<Agent*> _listofagents, int _id,
 	flag_memoryalreadyallocated_=false;
 
 	//Constants
-	nhor_		= _nhor; /*standard =6*/
+	nhor_		= _nhor; /*standard =10*/
 	alpha_ 		= _alpha;/*standard =2*/
 	zeta_  		= _zeta; /*standard =10*/
-	rtol_  		= _rtol; /*standard =1e-1*/
+	rtol_  		= _rtol; /*standard =1e-8*/
 	kmax_  		= _kmax; /*standard =6*/
 	hdir_		= _hdir; /*standard =0.001*/
 	ht_			= _ht;   /*standard =0.1*/
