@@ -118,7 +118,7 @@ Install:
 
     cd catkin_ws/src
     sudo apt-get install
-    git clone https://github.com/ros/ros_tutorials.git #Install Trtlesim
+    git clone https://github.com/ros/ros_tutorials.git #Install Turtlesim
     git clone https://github.com/DentOpt/denmpc.git -b tutorial_turtlesim  #Install DENMPC branch
     cd ..
     catkin_make
