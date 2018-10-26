@@ -80,7 +80,8 @@ If you are using the "Condensed Multiple Shooting Generalized Minimal Residuum M
     #Build package
     catkin_make
 
-### To use the AR.Drone 2.0 scenario with the tum simulator, install
+### To use the AR.Drone 2.0 scenario with the tum simulator
+Install:
 
     cd catkin_ws/src
     git clone https://github.com/DentOpt/ardrone_simulator_gazebo7.git
@@ -111,3 +112,27 @@ either to track center of UAV:
  and to send desired pose use rqt or commandline, e.g 
  
     rostopic pub /desiredpose geometry_msgs/PoseStamd '{header: {stamp: now, frame_id: "map"}, pose: {position: {x: 0.0, y: 0.0, z: 2.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}'
+
+### To use the Turtlebot scenario
+Install:
+
+    cd catkin_ws/src
+    sudo apt-get install
+    git clone https://github.com/ros/ros_tutorials.git #Install Trtlesim
+    git clone https://github.com/DentOpt/denmpc.git -b tutorial_turtlesim  #Install DENMPC branch
+    cd ..
+    catkin_make
+
+Run:
+
+    roscore #run roscore
+    rosrun turtlesim turtlesim_node #Run Turtlesim in separate tab
+    rosrun denmpc scenario_scenario_node #Run denmpc in separate tab
+
+That's it!
+You will see how the turtle DENMPC moves from its initial position to the position x=1 y=1.
+You can give any desired position by publishing it to the /turtle1/desiredpose.
+For example, for the new target x=5, y=5 type
+`rostopic pub /turtle1/desiredpose turtlesim/Pose "{x: 5.0, y: 5.0, theta: 0.0, linear_velocity: 0.0, angular_velocity: 0.0}"`
+
+
